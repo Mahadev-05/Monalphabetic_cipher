@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monoalphabetic Cipher Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-200 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-4xl bg-gray-800 rounded-xl shadow-lg p-6 md:p-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-cyan-400 mb-6">Monoalphabetic Cipher Tool</h1>
+
+        <!-- Cipher Tabs -->
+        <div class="flex justify-center border-b border-gray-700 mb-6">
+            <button id="tab-additive" class="cipher-tab active px-4 py-2 text-lg font-medium rounded-t-lg transition-colors">Additive</button>
+            <button id="tab-multiplicative" class="cipher-tab px-4 py-2 text-lg font-medium rounded-t-lg transition-colors">Multiplicative</button>
+            <button id="tab-affine" class="cipher-tab px-4 py-2 text-lg font-medium rounded-t-lg transition-colors">Affine</button>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="cipher-content">
+            <!-- Additive Cipher -->
+            <div id="content-additive" class="space-y-6">
+                <h2 class="text-2xl font-semibold text-center">Additive Cipher (Caesar)</h2>
+                <div>
+                    <label for="additive-key" class="block mb-2 font-medium">Key (a number from 0-25)</label>
+                    <input type="number" id="additive-key" min="0" max="25" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="e.g., 3">
+                </div>
+            </div>
+
+            <!-- Multiplicative Cipher -->
+            <div id="content-multiplicative" class="hidden space-y-6">
+                 <h2 class="text-2xl font-semibold text-center">Multiplicative Cipher</h2>
+                <div>
+                    <label for="multiplicative-key" class="block mb-2 font-medium">Key (coprime to 26)</label>
+                    <input type="number" id="multiplicative-key" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="e.g., 7">
+                </div>
+            </div>
+
+            <!-- Affine Cipher -->
+            <div id="content-affine" class="hidden space-y-6">
+                <h2 class="text-2xl font-semibold text-center">Affine Cipher</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="affine-key-a" class="block mb-2 font-medium">Key A (multiplicative, coprime to 26)</label>
+                        <input type="number" id="affine-key-a" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="e.g., 5">
+                    </div>
+                    <div>
+                         <label for="affine-key-b" class="block mb-2 font-medium">Key B (additive, 0-25)</label>
+                        <input type="number" id="affine-key-b" min="0" max="25" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="e.g., 8">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Fields -->
+            <div class="mt-6 space-y-4">
+                 <div>
+                    <label for="text-input" class="block mb-2 font-medium">Input Text</label>
+                    <textarea id="text-input" rows="4" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Enter your message here..."></textarea>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="btn-encrypt" class="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-md transition-transform transform hover:scale-105">Encrypt</button>
+                    <button id="btn-decrypt" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded-md transition-transform transform hover:scale-105">Decrypt</button>
+                    <button id="btn-brute-force" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-md transition-transform transform hover:scale-105">Brute Force Decrypt</button>
+                </div>
+                 <div>
+                    <label for="text-output" class="block mb-2 font-medium">Output</label>
+                    <textarea id="text-output" rows="4" readonly class="w-full p-3 bg-gray-900 border border-gray-600 rounded-md cursor-not-allowed" placeholder="Result will appear here..."></textarea>
+                </div>
+                <div id="brute-force-output" class="max-h-64 overflow-y-auto p-4 bg-gray-900 rounded-md">
+                    <!-- Brute force results will be injected here -->
+                </div>
+            </div>
+             <div id="error-message" class="text-red-400 text-center mt-4 font-medium h-6"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
